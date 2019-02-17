@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MBG Demo</string>
+    <string name="label_barcode_format">Barcode Format : EAN-13</string>
+    <string name="label_prefix">Prefix (GS1)</string>
+    <string name="label_manufacturer_code">Manufacturer Code</string>
+    <string name="label_total_barcodes">Total Barcodes</string>
+    <string name="label_first_product_code">First Product Code</string>
+    <string name="label_last_product_code">Last Product Code</string>
+    <string name="label_start_button">Start Barcode Generation</string>
+</resources>

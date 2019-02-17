@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_barcode_format"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_barcode_format"
+        android:textSize="@dimen/text_size_medium_large"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/margin_medium"/>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_gs1_prefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorAccentOpacity"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/tv_barcode_format"
+        android:layout_marginTop="@dimen/margin_medium">
+
+        <EditText
+            android:id="@+id/et_gs1_prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="sans-serif-regular"
+            android:hint="@string/label_prefix"
+            android:ems="7"
+            android:inputType="number"
+            android:maxLength="3"
+            android:imeOptions="actionNext"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_manufacturer_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorAccentOpacity"
+        app:layout_constraintStart_toEndOf="@id/til_gs1_prefix"
+        android:layout_marginLeft="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/tv_barcode_format"
+        android:layout_marginTop="@dimen/margin_medium">
+
+        <EditText
+            android:id="@+id/et_manufacturer_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="sans-serif-regular"
+            android:hint="@string/label_manufacturer_code"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="4"
+            android:imeOptions="actionNext"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_total_barcodes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorAccentOpacity"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/til_gs1_prefix"
+        android:layout_marginTop="@dimen/margin_medium">
+
+        <EditText
+            android:id="@+id/et_total_barcodes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="sans-serif-regular"
+            android:hint="@string/label_total_barcodes"
+            android:ems="7"
+            android:inputType="number"
+            android:maxLength="3"
+            android:imeOptions="actionNext"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_first_product_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/colorAccentOpacity"
+        app:layout_constraintStart_toEndOf="@id/til_total_barcodes"
+        android:layout_marginLeft="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/til_manufacturer_code"
+        android:layout_marginTop="@dimen/margin_medium">
+
+        <EditText
+            android:id="@+id/et_first_product_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="sans-serif-regular"
+            android:hint="@string/label_first_product_code"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="5"
+            android:imeOptions="actionDone"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/tv_label_last_product_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_last_product_code"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_size_medium"
+        android:fontFamily="sans-serif-regular"
+        app:layout_constraintTop_toBottomOf="@id/til_total_barcodes"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintStart_toStartOf="@id/til_total_barcodes"
+        android:paddingLeft="@dimen/padding_balance"/>
+
+    <TextView
+        android:id="@+id/tv_last_product_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0000000"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_size_medium"
+        android:fontFamily="sans-serif-regular"
+        app:layout_constraintTop_toBottomOf="@id/til_total_barcodes"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintStart_toStartOf="@id/til_first_product_code"
+        android:paddingLeft="@dimen/padding_balance"/>
+
+    <Button
+        android:id="@+id/btn_start_barcode_generation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/label_start_button"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_last_product_code"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="@dimen/margin_medium"/>
+
+</android.support.constraint.ConstraintLayout>
