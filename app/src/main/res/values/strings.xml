@@ -7,4 +7,5 @@
     <string name="label_first_product_code">First Product Code</string>
     <string name="label_last_product_code">Last Product Code</string>
     <string name="label_start_button">Start Barcode Generation</string>
+    <string name="label_please_wait">Please Wait</string>
 </resources>
