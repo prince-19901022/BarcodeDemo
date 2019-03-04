@@ -12,6 +12,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -87,6 +88,21 @@ public class MainActivity extends AppCompatActivity {
                     manufacturerCodeEditText.getText().toString() +
                     String.valueOf(productCode + i));
 
+                    int checkDigit = getCheckDigit(bi.getHri());
+                    bi.setHri(bi.getHri() + String.valueOf(checkDigit));
+
+                    Bitmap barcodeImage = createBarcode(formatWriter, encoder, bi.getHri());
+
+                    if (barcodeImage != null){
+
+                        barcodeImage = mergeBitmaps(barcodeImage, getBitmapWith(bi.getHri()));
+                        bi.setBarcodeImage(barcodeImage);
+
+                    }else{
+                        break;
+                    }
+
+
                     list.add(bi);
                 }
 
@@ -123,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         //paint.setTextAlign(Paint.Align.CENTER);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.BLACK);
         paint.setTextSize(30);
 
         // draw text to the Canvas center
@@ -152,10 +168,10 @@ public class MainActivity extends AppCompatActivity {
         return resultantBitmap;
     }
 
-    private Bitmap createBarcode(MultiFormatWriter formatWriter, BarcodeEncoder encoder, String textToEncode, BarcodeFormat format){
+    private Bitmap createBarcode(MultiFormatWriter formatWriter, BarcodeEncoder encoder, String textToEncode){
 
         try {
-            BitMatrix bitMat = formatWriter.encode(textToEncode,format,WIDTH,HEIGHT);
+            BitMatrix bitMat = formatWriter.encode(textToEncode,BarcodeFormat.EAN_13,WIDTH,HEIGHT);
             return encoder.createBitmap(bitMat);
         } catch (Exception e) {
             e.printStackTrace();
@@ -163,5 +179,20 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    //TODO : Calculate checksum and continue to generate barcode with hri.
+    //Completed : Calculate checksum and continue to generate barcode with hri.
+
+    private int getCheckDigit(String barcodeDigits){
+
+        int checkSum = 0;
+        for(int i = 0; i < 12; i++){
+
+            if (i % 2 == 0){
+                checkSum += (barcodeDigits.charAt(i) - 48);
+            }else{
+                checkSum += ((barcodeDigits.charAt(i) - 48) * 3);
+            }
+        }
+
+        return 10 - (checkSum % 10);
+    }
 }
